@@ -8,7 +8,11 @@ public class BoardDAO extends JDBConnect {
     public List<BoardDTO> selectBoardList() {
         List<BoardDTO> boardList = new ArrayList<>();
 
-        String sql = "SELECT * FROM board ORDER BY idx DESC; ";
+        String sql = "SELECT b.idx, b.post_title, b.post_pass, b.post_content, ";
+        sql += "b.post_ofile, b.post_sfile, b.post_date, b.post_open, b.post_visits, b.user_id, u.user_name ";
+        sql += "FROM board b ";
+        sql += "LEFT JOIN user u on b.user_id = u.user_id ";
+        sql += "ORDER BY b.idx DESC; ";
         try {
             pstm = conn.prepareStatement(sql);
             rs = pstm.executeQuery();
@@ -17,6 +21,7 @@ public class BoardDAO extends JDBConnect {
                 BoardDTO board = new BoardDTO();
                 board.setIdx(rs.getInt("idx"));
                 board.setUserId(rs.getString("user_id"));
+                board.setUserName(rs.getString("user_name"));
                 board.setPostTitle(rs.getString("post_title"));
                 board.setPostPass(rs.getString("post_pass"));
                 board.setPostContent(rs.getString("post_content"));
@@ -25,7 +30,6 @@ public class BoardDAO extends JDBConnect {
                 board.setPostDate(rs.getString("post_date"));
                 board.setPostOpen(rs.getInt("post_open"));
                 board.setPostVisits(rs.getInt("post_visits"));
-                // 필터링 과정 추가 ex) user_idx, post_open, post_date
                 boardList.add(board);
             }
         } catch (Exception e) {
@@ -39,7 +43,11 @@ public class BoardDAO extends JDBConnect {
     public List<BoardDTO> selectBoardList(int startNum, int pageSize) {
         List<BoardDTO> boardList = new ArrayList<>();
 
-        String sql = "SELECT * FROM board ORDER BY idx DESC ";
+        String sql = "SELECT b.idx, b.post_title, b.post_pass, b.post_content, ";
+        sql += "b.post_ofile, b.post_sfile, b.post_date, b.post_open, b.post_visits, b.user_id, u.user_name ";
+        sql += "FROM board b ";
+        sql += "LEFT JOIN user u on b.user_id = u.user_id ";
+        sql += "ORDER BY b.idx DESC ";
         sql += "LIMIT ?, ?; ";
         try {
             pstm = conn.prepareStatement(sql);
@@ -51,6 +59,7 @@ public class BoardDAO extends JDBConnect {
                 BoardDTO board = new BoardDTO();
                 board.setIdx(rs.getInt("idx"));
                 board.setUserId(rs.getString("user_id"));
+                board.setUserName(rs.getString("user_name"));
                 board.setPostTitle(rs.getString("post_title"));
                 board.setPostPass(rs.getString("post_pass"));
                 board.setPostContent(rs.getString("post_content"));
@@ -59,7 +68,6 @@ public class BoardDAO extends JDBConnect {
                 board.setPostDate(rs.getString("post_date"));
                 board.setPostOpen(rs.getInt("post_open"));
                 board.setPostVisits(rs.getInt("post_visits"));
-                // 필터링 과정 추가 ex) user_idx
                 boardList.add(board);
             }
         } catch (Exception e) {

@@ -62,7 +62,7 @@
                         <c:forEach items="${boardList}" var="item" varStatus="loop">
                             <tr>
                                 <td>${item.postTitle}</td>
-                                <td>${item.userId}</td>
+                                <td>${item.userName}</td>
                                 <td>${item.postDate}</td>
                                 <td>${item.postVisits}</td>
                                 <td>${item.postOpen}</td>
