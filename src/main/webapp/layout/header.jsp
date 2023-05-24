@@ -6,8 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-success fixed-top">
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-sm navbar-light bg-success">
         <div class="container-fluid">
             <a href="/myLog/List.do" class="navbar-brand ">myLog</a>
             <div class="justify-content-end">
@@ -29,4 +29,5 @@
         </div>
 
     </nav>
+    <hr class="m-0">
 </header>
