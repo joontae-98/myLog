@@ -6,27 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.HashMap" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-    Map<String, Object> param = new HashMap<>();
-    int totalCount = 23;
+    int totalBoard = (int) request.getAttribute("totalBoard");
 
-    int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
-    int blockPage = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
-    int totalPage = (int) Math.ceil((double) totalCount / pageSize);
-
-    int pageNum = 1;
-    String pageTemp = request.getParameter("pageNum");
-    if (pageTemp != null && !pageTemp.equals(""))
-        pageNum = Integer.parseInt(pageTemp);
-
-    int start = (pageNum - 1) * pageSize + 1;
-    int end = pageNum * pageSize;
-    param.put("start", start);
-    param.put("end", end);
+    int pageSize = (int) request.getAttribute("pageSize");
+    int blockPage = (int) request.getAttribute("blockPage");
+    int totalPage = (int) Math.ceil((double) totalBoard / pageSize);
+    int pageNum = (int) request.getAttribute("pageNum");
 %>
 <html>
 <head>
@@ -64,169 +52,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
+                <c:choose>
+                    <c:when test="${empty totalBoard}">
+                        <tr>
+                            <td colspan="6">등록된 게시물이 없습니다.</td>
+                        </tr>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${boardList}" var="item" varStatus="loop">
+                            <tr>
+                                <td>${item.postTitle}</td>
+                                <td>${item.userId}</td>
+                                <td>${item.postDate}</td>
+                                <td>${item.postVisits}</td>
+                                <td>${item.postOpen}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
 
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 10</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-
-                <tr>
-                    <td>테스트 제목 20</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
-                <tr>
-                    <td>테스트 제목 1</td>
-                    <td>testuser1</td>
-                    <td>2023-05-24</td>
-                    <td>4</td>
-                    <td>비공개</td>
-                </tr>
 
                 </tbody>
             </table>
@@ -269,8 +113,6 @@
                     }
                 %>
             </div>
-
-
         </div>
     </div>
 </main>

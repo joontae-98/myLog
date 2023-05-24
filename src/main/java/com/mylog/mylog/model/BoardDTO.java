@@ -1,8 +1,15 @@
 package com.mylog.mylog.model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Formatter;
+
 public class BoardDTO {
     private int idx;
-    private int userIdx;
+    private String userId;
+    private String userName;
     private String postTitle;
     private String postPass;
     private String postContent;
@@ -20,12 +27,12 @@ public class BoardDTO {
         this.idx = idx;
     }
 
-    public int getUserIdx() {
-        return userIdx;
+    public String  getUserId() {
+        return userId;
     }
 
-    public void setUserIdx(int userIdx) {
-        this.userIdx = userIdx;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getPostTitle() {
@@ -72,8 +79,11 @@ public class BoardDTO {
         return postDate;
     }
 
-    public void setPostDate(String postDate) {
-        this.postDate = postDate;
+    public void setPostDate(String postDate) throws ParseException {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = format.parse(postDate);
+        format = new SimpleDateFormat("yyyy-MM-dd");
+        this.postDate = format.format(date);
     }
 
     public int getPostOpen() {
@@ -90,5 +100,13 @@ public class BoardDTO {
 
     public void setPostVisits(int postVisits) {
         this.postVisits = postVisits;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
