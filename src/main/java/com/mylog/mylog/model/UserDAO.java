@@ -41,4 +41,29 @@ public class UserDAO extends JDBConnect {
         }
         return result;
     }
+
+    public boolean equalsPassword(String id, String pass) {
+        boolean result = false;
+        String sql = "SELECT COUNT(*) AS cnt ";
+        sql += "FROM user ";
+        sql += "WHERE user_id = ? ";
+        sql += "AND user_pass = ?; ";
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, id);
+            pstm.setString(2, pass);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                if (rs.getInt("cnt") == 1) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("데이터 베이스 equalsPassword 에러 발생");
+            System.out.println("Error : " + e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
