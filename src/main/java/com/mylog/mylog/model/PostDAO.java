@@ -12,7 +12,7 @@ public class PostDAO extends JDBConnect {
         sql += "p.post_ofile, p.post_sfile, p.post_date, p.post_open, p.post_visits, p.user_id, u.user_name ";
         sql += "FROM post p ";
         sql += "LEFT JOIN user u on p.user_id = u.user_id ";
-        sql += "ORDER BY p.idx DESC; ";
+        sql += "ORDER BY p.post_date DESC; ";
         try {
             pstm = conn.prepareStatement(sql);
             rs = pstm.executeQuery();
@@ -47,7 +47,7 @@ public class PostDAO extends JDBConnect {
         sql += "p.post_ofile, p.post_sfile, p.post_date, p.post_open, p.post_visits, p.user_id, u.user_name ";
         sql += "FROM post p ";
         sql += "LEFT JOIN user u on p.user_id = u.user_id ";
-        sql += "ORDER BY p.idx DESC ";
+        sql += "ORDER BY p.post_date DESC ";
         sql += "LIMIT ?, ?; ";
         try {
             pstm = conn.prepareStatement(sql);

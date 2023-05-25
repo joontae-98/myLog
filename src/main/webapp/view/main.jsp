@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -18,6 +19,7 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/style/css.css">
+
 </head>
 <body>
 <jsp:include page="/layout/header.jsp"></jsp:include>
@@ -25,68 +27,42 @@
     <div class="row">
         <div class="col-sm-10 mx-auto">
             <h1>최신글</h1>
+            <hr class="mb-0">
             <div class="row row-cols-3">
-                <div class="col my-3">
-                    <div class="card shadow">
-                        <div class="card-body pb-2 px-0">
-                            <div class="px-3">
-                                div
-                                <h3 class="card-title">post title</h3>
-                                <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">
-                                    postContent</h6>
-                                <p class="m-0 ">postDate</p>
+                <c:choose>
+                    <c:when test="${empty postList}">
+                        <h4 class=" my-4">작성된 게시글이 없습니다.</h4>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${postList}" var="item" varStatus="loop">
+                            <div class="col my-3">
+                                <div class="card shadow">
+                                    <div class="card-body pb-2 px-0">
+                                        <div class="px-3">
+                                            <h3 class="card-title">
+                                                <a href="/myLog/post.do?postNum=${item.idx}"
+                                                   class="text-decoration-none text-black">${item.postTitle}</a>
+                                            </h3>
+                                            <h6 class="card-subtitle mb-2 text-body-secondary text-truncate"
+                                                style="height: 60px">
+                                                    ${item.postContent}</h6>
+                                            <p class="m-0 text-secondary">${item.postDate}</p>
+                                        </div>
+
+                                        <hr class="my-1 mx-0">
+                                        <div class="d-flex justify-content-between px-3">
+                                            <p class="m-0">${item.userName}</p>
+                                            <p class="m-0">${item.postVisits}</p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
 
-                            <hr class="my-1 mx-0">
-                            <div class="d-flex justify-content-between px-3">
-                                <p class="m-0">userName</p>
-                                <p class="m-0">postVisits</p>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col my-3">
-                    <div class="card shadow">
-                        <div class="card-body pb-2 px-0">
-                            <div class="px-3">
-                                <h3 class="card-title">post title</h3>
-                                <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">
-                                    postContent</h6>
-                                <p class="m-0 ">postDate</p>
-                            </div>
-
-                            <hr class="my-1 mx-0">
-                            <div class="d-flex justify-content-between px-3">
-                                <p class="m-0">userName</p>
-                                <p class="m-0">postVisits</p>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col my-3">
-                    <div class="card shadow">
-                        <div class="card-body pb-2 px-0">
-                            <div class="px-3">
-                                <h3 class="card-title">post title</h3>
-                                <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">
-                                    postContent</h6>
-                                <p class="m-0 ">postDate</p>
-                            </div>
-
-                            <hr class="my-1 mx-0">
-                            <div class="d-flex justify-content-between px-3">
-                                <p class="m-0">userName</p>
-                                <p class="m-0">postVisits</p>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>
