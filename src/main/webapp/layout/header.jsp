@@ -6,25 +6,40 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <header class="sticky-top">
     <nav class="navbar navbar-expand-sm navbar-light bg-success">
         <div class="container-fluid">
             <a href="/myLog/Main.do" class="navbar-brand ">myLog</a>
             <div class="justify-content-end">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/myLog/Signup.do"> <span class="fw-bold">회원가입</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/myLog/Login.do">로그인</a>
-                    </li>
-                </ul>
 
-                <%--                <ul class="navbar-nav">--%>
-                <%--                    <li class="nav-item"> <button type="button" class="btn btn-primary">글 작성</button></li>--%>
-                <%--                    <li class="nav-item"><a href="#" class="nav-link text-danger">로그아웃</a></li>--%>
-                <%--                    <li class="nav-item"><a href="#" class="nav-link">홍길동</a></li>--%>
-                <%--                </ul>--%>
+                <c:choose>
+                    <c:when test="${not empty sessionScope.user}">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="/myLog/Write.do" class="btn btn-primary">글 작성
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/myLog/Logout.do" class="nav-link text-danger">로그아웃</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/myLog/blog.do" class="nav-link">${sessionScope.user.userName}</a>
+                            </li>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/myLog/Signup.do"> <span class="fw-bold">회원가입</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/myLog/Login.do">로그인</a>
+                            </li>
+                        </ul>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
 

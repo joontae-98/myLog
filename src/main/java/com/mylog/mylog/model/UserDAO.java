@@ -66,4 +66,29 @@ public class UserDAO extends JDBConnect {
         }
         return result;
     }
+
+    public UserDTO selectUser(String id, String pass) {
+        UserDTO user = new UserDTO();
+        String sql = "SELECT * FROM user ";
+        sql += "WHERE user_id = ? ";
+        sql += "AND user_pass = ?; ";
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, id);
+            pstm.setString(2, pass);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                user.setUserId(rs.getString("user_id"));
+                user.setUserPass(rs.getString("user_pass"));
+                user.setUserDate(rs.getString("user_date"));
+                user.setUserName(rs.getString("user_name"));
+            }
+        } catch (Exception e) {
+            System.out.println("데이터 베이스 selectUser 에러 발생");
+            System.out.println("Error : " + e.getMessage());
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

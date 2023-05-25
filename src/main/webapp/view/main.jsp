@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -29,6 +30,7 @@
                     <div class="card shadow">
                         <div class="card-body pb-2 px-0">
                             <div class="px-3">
+                                div
                                 <h3 class="card-title">post title</h3>
                                 <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">
                                     postContent</h6>
