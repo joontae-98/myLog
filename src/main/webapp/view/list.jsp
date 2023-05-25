@@ -9,11 +9,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-    int totalBoard = (int) request.getAttribute("totalBoard");
+    int totalPost = (int) request.getAttribute("totalPost");
 
     int pageSize = (int) request.getAttribute("pageSize");
     int blockPage = (int) request.getAttribute("blockPage");
-    int totalPage = (int) Math.ceil((double) totalBoard / pageSize);
+    int totalPage = (int) Math.ceil((double) totalPost / pageSize);
     int pageNum = (int) request.getAttribute("pageNum");
 %>
 <html>
@@ -54,13 +54,13 @@
                 </thead>
                 <tbody>
                 <c:choose>
-                    <c:when test="${empty totalBoard}">
+                    <c:when test="${empty totalPost}">
                         <tr>
                             <td colspan="6">등록된 게시물이 없습니다.</td>
                         </tr>
                     </c:when>
                     <c:otherwise>
-                        <c:forEach items="${boardList}" var="item" varStatus="loop">
+                        <c:forEach items="${postList}" var="item" varStatus="loop">
                             <tr>
                                 <td>${item.postTitle}</td>
                                 <td>${item.userName}</td>

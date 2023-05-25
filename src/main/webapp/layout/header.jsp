@@ -9,14 +9,14 @@
 <header class="sticky-top">
     <nav class="navbar navbar-expand-sm navbar-light bg-success">
         <div class="container-fluid">
-            <a href="/myLog/List.do" class="navbar-brand ">myLog</a>
+            <a href="/myLog/Main.do" class="navbar-brand ">myLog</a>
             <div class="justify-content-end">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"> <span class="fw-bold">회원가입</span></a>
+                        <a class="nav-link" href="/myLog/Signup.do"> <span class="fw-bold">회원가입</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">로그인</a>
+                        <a class="nav-link" href="/myLog/Login.do">로그인</a>
                     </li>
                 </ul>
 

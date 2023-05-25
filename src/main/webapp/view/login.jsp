@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-sm-4 mx-auto">
             <h1 class="text-center my-4">로그인</h1>
-            <form action="" class="border rounded px-4 py-3" method="post">
+            <form action="/myLog/Login.do" class="border rounded px-4 py-3" method="post">
                 <div class="my-3 form-floating">
                     <input type="text" class="form-control" id="user-id" name="userId" placeholder="아이디"
                            required>

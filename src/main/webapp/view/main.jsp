@@ -24,25 +24,14 @@
     <div class="row">
         <div class="col-sm-10 mx-auto">
             <h1>최신글</h1>
-            <hr>
-            <%--            <div class="row justify-content-around ">--%>
-            <%--                <div class="col-sm-3">--%>
-            <%--                    <h1>card</h1>--%>
-            <%--                </div>--%>
-            <%--                <div class="col-sm-3">--%>
-            <%--                    <h1>col1</h1>--%>
-            <%--                </div>--%>
-            <%--                <div class="col-sm-3">--%>
-            <%--                    <h1>col1</h1>--%>
-            <%--                </div>--%>
-            <%--            </div>--%>
             <div class="row row-cols-3">
                 <div class="col my-3">
                     <div class="card shadow">
                         <div class="card-body pb-2 px-0">
                             <div class="px-3">
                                 <h3 class="card-title">post title</h3>
-                                <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">postContent</h6>
+                                <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">
+                                    postContent</h6>
                                 <p class="m-0 ">postDate</p>
                             </div>
 
@@ -61,7 +50,8 @@
                         <div class="card-body pb-2 px-0">
                             <div class="px-3">
                                 <h3 class="card-title">post title</h3>
-                                <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">postContent</h6>
+                                <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">
+                                    postContent</h6>
                                 <p class="m-0 ">postDate</p>
                             </div>
 
@@ -80,7 +70,8 @@
                         <div class="card-body pb-2 px-0">
                             <div class="px-3">
                                 <h3 class="card-title">post title</h3>
-                                <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">postContent</h6>
+                                <h6 class="card-subtitle mb-2 text-body-secondary text-truncate" style="height: 60px">
+                                    postContent</h6>
                                 <p class="m-0 ">postDate</p>
                             </div>
 

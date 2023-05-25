@@ -2,19 +2,11 @@ package com.mylog.mylog.model;
 
 public class UserDTO {
 
-    private int userIdx;
     private String userId;
     private String userPass;
     private String userName;
     private String userDate;
 
-    public int getUserIdx() {
-        return userIdx;
-    }
-
-    public void setUserIdx(int userIdx) {
-        this.userIdx = userIdx;
-    }
 
     public String getUserId() {
         return userId;

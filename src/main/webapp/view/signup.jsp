@@ -15,6 +15,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
+
+    <script>
+
+        $(Document).ready(() => {
+            $("#btn-cancel").on("click", () => {
+                history.back();
+            });
+        });
+    </script>
 </head>
 <body>
 <jsp:include page="/layout/header.jsp"></jsp:include>
@@ -22,7 +31,7 @@
     <div class="row">
         <div class="col-sm-4 mx-auto">
             <h1 class="text-center my-4">회원가입</h1>
-            <form action="" class="border rounded px-4 py-3" method="post">
+            <form action="/myLog/Signup.do" class="border rounded px-4 py-3" method="post">
                 <div class="my-3">
                     <label for="user-id" class="form-label">아이디</label>
                     <input type="text" class="form-control" id="user-id" name="userId" placeholder="아이디를 입력해 주세요."
@@ -47,7 +56,7 @@
                 </div>
                 <div class="my-3 d-grid">
                     <button type="submit" class="btn btn-primary mb-2">회원가입</button>
-                    <button type="button" class="btn btn-secondary">취소</button>
+                    <button type="button" class="btn btn-secondary" id="btn-cancel">취소</button>
                 </div>
 
             </form>
