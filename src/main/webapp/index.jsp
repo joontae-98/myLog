@@ -10,7 +10,7 @@
 <a href="hello-servlet">Hello Servlet</a>
 <%
 //  response.sendRedirect("/myLog/List.do?start=1&end=10");
-  response.sendRedirect("/view/blog.jsp");
+  response.sendRedirect("/view/write.jsp");
 %>
 
 </body>
