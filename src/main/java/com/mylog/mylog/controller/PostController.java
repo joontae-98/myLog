@@ -9,20 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/myLog/Main.do")
-public class MainContorller extends HttpServlet {
+@WebServlet("/myLog/Post.do")
+public class PostController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<PostDTO> postList;
+
+        PostDTO post;
+        int postNum = Integer.parseInt(req.getParameter("postNum"));
         PostDAO dao = new PostDAO();
-        postList = dao.selectPostList();
+        post = dao.selectPost(postNum);
         dao.close();
 
-        req.setAttribute("postList", postList);
+        req.setAttribute("post", post);
 
-        req.getRequestDispatcher("/view/main.jsp").forward(req, resp);
+        req.getRequestDispatcher("/view/post.jsp").forward(req, resp);
+
     }
 }

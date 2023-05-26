@@ -32,22 +32,22 @@ public class SignupController extends HttpServlet {
 
         UserDAO dao = new UserDAO();
         int exist = dao.searchId(id);
+        dao.close();
 
         if (exist != 0) {
             JSFunc.alertBack("존재하는 id입니다.", resp);
-            dao.close();
             return;
         }
 
         if (!pass.equals(pwCheck)) {
             JSFunc.alertBack("비밀번호가 일치하지 않습니다.", resp);
-            dao.close();
             return;
         }
         user.setUserId(id);
         user.setUserPass(pass);
         user.setUserName(name);
 
+        dao = new UserDAO();
         int result = dao.insertUser(user);
         dao.close();
 

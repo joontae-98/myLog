@@ -18,7 +18,7 @@
 
     <script>
 
-        $(Document).ready(() => {
+        $(document).ready(() => {
             $("#btn-cancel").on("click", () => {
                 history.back();
             });

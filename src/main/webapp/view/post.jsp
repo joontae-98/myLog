@@ -16,48 +16,91 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(() => {
+            $("#btn-list").on("click", () => {
+                history.back();
+            });
+
+
+            $(".btn-modal").on("click", function () {
+                var data = $(this).data('id');
+                $("#post-mode").val(data);
+
+            });
+
+        });
+
+    </script>
 </head>
 <body>
+
+<div class="modal fade" id="modal-pass">
+    <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" action="/myLog/Pass.do" method="post">
+            <div class="modal-header">
+                <h4 class="modal-title">비밀번호 입력</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <label for="post-pass" class="form-label">비밀번호</label>
+                <input type="password" class="form-control" id="post-pass" name="postPass"
+                       placeholder="비밀번호를 입력하세요"
+                       required>
+            </div>
+            <div>
+                <input type="hidden" name="postIdx" value="${post.idx}">
+                <input type="hidden" name="postMode" id="post-mode">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="submit" class="btn btn-primary">확인</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
 <c:import url="/layout/header.jsp"></c:import>
 <main class="container my-5">
-
     <div class="row">
         <div class="col-sm-10 mx-auto">
-            <h1>post title</h1>
+            <h1>${post.postTitle}</h1>
             <div class="d-flex justify-content-between">
                 <div>
-                    <span>postName</span>
-                    <span>postDate</span>
+                    <span>${post.userName}</span>
+                    <span>${post.postDate}</span>
                 </div>
-                <span class="text-secondary">postVisits</span>
+                <span class="text-secondary">${post.postVisits}</span>
             </div>
             <hr class="mt-2">
             <div>
-                <h5>군인은 현역을 면한 후가 아니면 국무위원으로 임명될 수 없다. 국가는 건전한 소비행위를 계도하고 생산품의 품질향상을 촉구하기 위한
-                    소비자보호운동을 법률이 정하는 바에 의하여 보장한다.
-
-                    헌법재판소의 장은 국회의 동의를 얻어 재판관중에서 대통령이 임명한다. 모든 국민은 근로의 의무를 진다. 국가는 근로의 의무의 내용과 조건을 민주주의원칙에 따라 법률로 정한다.
-
-                    신체장애자 및 질병·노령 기타의 사유로 생활능력이 없는 국민은 법률이 정하는 바에 의하여 국가의 보호를 받는다. 대통령은 국무회의의 의장이 되고, 국무총리는 부의장이 된다.
-
-                    국회의원은 법률이 정하는 직을 겸할 수 없다. 농업생산성의 제고와 농지의 합리적인 이용을 위하거나 불가피한 사정으로 발생하는 농지의 임대차와 위탁경영은 법률이 정하는 바에 의하여
-                    인정된다.
-
-                    대통령은 국가의 원수이며, 외국에 대하여 국가를 대표한다. 국회나 그 위원회의 요구가 있을 때에는 국무총리·국무위원 또는 정부위원은 출석·답변하여야 하며, 국무총리 또는 국무위원이
-                    출석요구를 받은 때에는 국무위원 또는 정부위원으로 하여금 출석·답변하게 할 수 있다.</h5>
+                <h5>${post.postContent}</h5>
             </div>
-            <div>
-                <span class="fw-bold">첨부파일 : </span>
-                <a href="">1.jpg</a>
-            </div>
+            <c:if test="${not empty post.postOfile}">
+                <div>
+                    <span class="fw-bold">첨부파일 : </span>
+                    <a href="">${post.postOfile}</a>
+                </div>
+            </c:if>
             <hr>
             <div class="my-3 row">
                 <div class="col-sm">
                     <button type="button" class="btn btn-secondary" id="btn-list">목록</button>
                 </div>
                 <div class="col-sm d-flex justify-content-end">
-                    <a href="" class="text-decoration-none text-secondary fw-bold px-2">수정</a>
-                    <a href="" class="text-decoration-none text-danger fw-bold px-2">삭제</a>
+                    <c:if test="${post.userId == sessionScope.user.userId}">
+                        <button type="button" class="btn btn-success fw-bold me-2 btn-modal" data-id="edit"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal-pass">수정
+                        </button>
+                        <button type="button" class="btn btn-danger fw-bold btn-modal" data-id="delete"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modal-pass">삭제
+                        </button>
+                    </c:if>
+
                 </div>
             </div>
         </div>

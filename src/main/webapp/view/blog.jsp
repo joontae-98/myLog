@@ -20,13 +20,20 @@
     <style>
         .crop-text-3 {
             -webkit-line-clamp: 3;
-            overflow : hidden;
+            overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
         }
     </style>
 
+    <script>
+        $(document).ready(() => {
+            $("#btn-comment").on("click", () => {
+                location.href = "/myLog/Comment.co?userId=${userId}";
+            });
+        });
+    </script>
 </head>
 <body>
 <c:import url="/layout/header.jsp"></c:import>
@@ -36,75 +43,40 @@
             <div class="card shadow-sm">
                 <div class="card-body pb-2">
                     <h4 class="card-title">방명록</h4>
-                    <hr class="my-1 mx-0">
-                    <p class="text-truncate mb-2">첫번째 방명록 첫번째 방명록 첫번째 방명록 첫번째 방명록 첫번째 방명록 첫번째 방명록</p>
-                    <button type="button" class="btn btn-primary w-100">방명록보기</button>
+                    <c:forEach items="${commentList}" var="item" varStatus="loop">
+                        <hr class="my-1 mx-0">
+                        <p class="text-truncate mb-2">${item.comment}</p>
+                    </c:forEach>
+
+                    <button type="button" class="btn btn-primary w-100" id="btn-comment">방명록보기
+                    </button>
                 </div>
             </div>
         </div>
         <div class="col-sm-8">
-            <h1>User님의 블로그</h1>
+            <h1>${userId}님의 블로그</h1>
             <hr>
-            <div class="my-3">
-                <div class="d-flex justify-content-between">
-                    <h3>post title</h3>
-                    <span>postVisits</span>
-                </div>
-                <h6 class="text-body-secondary crop-text-3" style="height: 60px">
-                    post content post content post content post content post content post content post content post
-                    content post content post content post content post content post content post content post content
-                    post content post content post content post content post content post content post content post content post
-                    content post content post content post content post content post content post content post content
-                    post content
-                </h6>
-                <span>postVisits</span>
-                <hr>
-            </div>
-            <div class="my-3">
-                <div class="d-flex justify-content-between">
-                    <h3>post title</h3>
-                    <span>postVisits</span>
-                </div>
-                <h6 class="text-body-secondary crop-text-3" style="height: 60px">
-                    post content post content post content post content post content post content post content post
-                    content post content post content post content post content post content post content post content
-                    post content post content post content post content post content post content post content post content post
-                    content post content post content post content post content post content post content post content
-                    post content
-                </h6>
-                <span>postVisits</span>
-                <hr>
-            </div>
-            <div class="my-3">
-                <div class="d-flex justify-content-between">
-                    <h3>post title</h3>
-                    <span>postVisits</span>
-                </div>
-                <h6 class="text-body-secondary crop-text-3" style="height: 60px">
-                    post content post content post content post content post content post content post content post
-                    content post content post content post content post content post content post content post content
-                    post content post content post content post content post content post content post content post content post
-                    content post content post content post content post content post content post content post content
-                    post content
-                </h6>
-                <span>postVisits</span>
-                <hr>
-            </div>
-            <div class="my-3">
-                <div class="d-flex justify-content-between">
-                    <h3>post title</h3>
-                    <span>postVisits</span>
-                </div>
-                <h6 class="text-body-secondary crop-text-3" style="height: 60px">
-                    post content post content post content post content post content post content post content post
-                    content post content post content post content post content post content post content post content
-                    post content post content post content post content post content post content post content post content post
-                    content post content post content post content post content post content post content post content
-                    post content
-                </h6>
-                <span>postVisits</span>
-                <hr>
-            </div>
+            <c:choose>
+                <c:when test="${empty postList}">
+                    <h4 class=" my-4">작성된 게시글이 없습니다.</h4>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach items="${postList}" var="item" varStatus="loop">
+                        <div class="my-3">
+                            <div class="d-flex justify-content-between">
+                                <h3><a href="/myLog/Post.do?postNum=${item.idx}"
+                                       class="text-decoration-none text-black">${item.postTitle}</a></h3>
+                                <span>${item.postVisits}</span>
+                            </div>
+                            <h6 class="text-body-secondary crop-text-3" style="height: 60px">
+                                    ${item.postContent}
+                            </h6>
+                            <span>${item.postDate}</span>
+                            <hr>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
         </div>
         <div class="col-sm-2"></div>
 

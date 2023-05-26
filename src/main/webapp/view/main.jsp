@@ -40,7 +40,7 @@
                                     <div class="card-body pb-2 px-0">
                                         <div class="px-3">
                                             <h3 class="card-title">
-                                                <a href="/myLog/post.do?postNum=${item.idx}"
+                                                <a href="/myLog/Post.do?postNum=${item.idx}"
                                                    class="text-decoration-none text-black">${item.postTitle}</a>
                                             </h3>
                                             <h6 class="card-subtitle mb-2 text-body-secondary text-truncate"
@@ -53,9 +53,7 @@
                                         <div class="d-flex justify-content-between px-3">
                                             <p class="m-0">${item.userName}</p>
                                             <p class="m-0">${item.postVisits}</p>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

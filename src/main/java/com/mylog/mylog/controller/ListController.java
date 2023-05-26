@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/myLog/List.do")
-public class ListContorller extends HttpServlet {
+public class ListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int totalPost;
@@ -30,7 +30,7 @@ public class ListContorller extends HttpServlet {
 
 
         PostDAO dao = new PostDAO();
-        postList = dao.selectPostList(startNum, pageSize);
+        postList = dao.selectPostList("",startNum, pageSize);
         totalPost = dao.countAllPost();
         dao.close();
 

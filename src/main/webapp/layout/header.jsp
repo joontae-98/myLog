@@ -18,14 +18,15 @@
                     <c:when test="${not empty sessionScope.user}">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="/myLog/Write.do" class="btn btn-primary">글 작성
+                                <a href="/myLog/Write.as" class="btn btn-primary">글 작성
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="/myLog/Logout.do" class="nav-link text-danger">로그아웃</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/myLog/blog.do" class="nav-link">${sessionScope.user.userName}</a>
+                                <a href="/myLog/Blog.do?userId=${sessionScope.user.userId}"
+                                   class="nav-link">${sessionScope.user.userName}</a>
                             </li>
                         </ul>
                     </c:when>
