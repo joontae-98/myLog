@@ -19,11 +19,7 @@
 
     <script>
         $(document).ready(() => {
-            $('#btn-delete').on("click", () => {
-                const idx = $('#comment-idx').val();
 
-                location.href = "/myLog/Delete.co?idx=" + idx + "userId=${userId}";
-            });
         });
     </script>
 </head>
@@ -40,7 +36,14 @@
                         <input type="text" class="form-control" id="comment" name="comment" placeholder="방명록을 작성해 주세요.">
                     </div>
                     <div class="col-sm d-grid">
-                        <button type="submit" class="btn btn-primary">작성하기</button>
+                        <c:choose>
+                            <c:when test="${empty sessionScope.user.userId}">
+                                <button type="submit" class="btn btn-primary" disabled>작성하기</button>
+                            </c:when>
+                            <c:otherwise>
+                                <button type="submit" class="btn btn-primary">작성하기</button>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <div>
                         <input type="hidden" value="${userId}" name="userId">
@@ -59,21 +62,18 @@
                                 <div class="col-sm-11">
                                     <p class="mb-2">${item.comment}</p>
                                 </div>
-
-                                <c:if test="${sessionScope.user.userId == item.userId || sessionScope.user.userId == item.commentId}">
-
-                                </c:if>
+                                    <%--                                코멘트 수정 코드 --%>
                                     <%--                                <div class="col-sm">--%>
                                     <%--                                    <c:if test="${sessionScope.user.userId == item.userId}">--%>
                                     <%--                                        <button type="button" class="btn btn-secondary btn-edit">수정</button>--%>
                                     <%--                                    </c:if>--%>
-
                                     <%--                                </div>--%>
                                 <div class="col-sm ">
-                                    <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
-                                </div>
-                                <div>
-                                    <input type="hidden" value="${item.idx}" id="comment-idx">
+                                    <c:if test="${sessionScope.user.userId == item.userId || sessionScope.user.userId == item.commentId}">
+                                        <a href="/myLog/Delete.co?idx=${item.idx}&userId=${userId}"
+                                           class="btn btn-danger"
+                                           id="btn-delete">삭제</a>
+                                    </c:if>
                                 </div>
                                 <hr class="my-1 mx-0">
                             </div>

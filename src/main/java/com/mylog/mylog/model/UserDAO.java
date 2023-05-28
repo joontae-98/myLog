@@ -91,4 +91,23 @@ public class UserDAO extends JDBConnect {
         }
         return user;
     }
+
+    public String getUserName(String userId) {
+        String userName = "";
+        String sql = "SELECT user_name FROM user WHERE user_id = ?; ";
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, userId);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                userName = rs.getString("user_name");
+            }
+        } catch (Exception e) {
+            System.out.println("데이터 베이스 getUserName 에러 발생");
+            System.out.println("Error : " + e.getMessage());
+            e.printStackTrace();
+        }
+        return userName;
+    }
 }

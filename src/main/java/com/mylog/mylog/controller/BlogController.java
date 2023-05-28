@@ -20,7 +20,7 @@ public class BlogController extends HttpServlet {
 
         List<PostDTO> postList = new ArrayList<>();
         List<CommentDTO> commentList = new ArrayList<>();
-      String userId = req.getParameter("userId");
+        String userId = req.getParameter("userId");
 
         PostDAO dao1 = new PostDAO();
         postList = dao1.selectPostList(userId);
@@ -29,9 +29,15 @@ public class BlogController extends HttpServlet {
         CommentDAO dao2 = new CommentDAO();
         commentList = dao2.selectCommentList(userId);
         dao2.close();
+
+        UserDAO dao3 = new UserDAO();
+        String userName = dao3.getUserName(userId);
+        dao3.close();
+
         req.setAttribute("postList", postList);
         req.setAttribute("commentList", commentList);
         req.setAttribute("userId", userId);
+        req.setAttribute("userName", userName);
 
         req.getRequestDispatcher("/view/blog.jsp").forward(req, resp);
     }

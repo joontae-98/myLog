@@ -69,7 +69,7 @@
             <h1>${post.postTitle}</h1>
             <div class="d-flex justify-content-between">
                 <div>
-                    <span>${post.userName}</span>
+                    <a href="/myLog/Blog.do?userId=${post.userId}">${post.userName}</a>
                     <span>${post.postDate}</span>
                 </div>
                 <span class="text-secondary">${post.postVisits}</span>

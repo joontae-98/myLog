@@ -61,8 +61,21 @@ public class CommentController extends HttpServlet {
         }
     }
 
-    private void deleteFunc(HttpServletRequest req, HttpServletResponse resp) {
+    private void deleteFunc(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
+        int result = 0;
+        int idx = Integer.parseInt(req.getParameter("idx"));
+        String userId = req.getParameter("userId");
+
+        CommentDAO dao = new CommentDAO();
+        result = dao.deleteComment(idx);
+        dao.close();
+
+        if (result == 1) {
+            resp.sendRedirect("/myLog/Comment.co?userId=" + userId);
+        } else {
+            JSFunc.alertBack("코멘트 삭제 중 오류가 발생하였습니다.", resp);
+        }
     }
 
     private void commentFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -40,11 +40,32 @@ public class CommentDAO extends JDBConnect {
         String sql = "INSERT INTO comment(comment, user_id, comment_date, comment_id) ";
         sql += "VALUES(? , ?, NOW(), ?); ";
         try {
-            
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, comment.getComment());
+            pstm.setString(2, comment.getUserId());
+            pstm.setString(3, comment.getCommentId());
+            result = pstm.executeUpdate();
         } catch (Exception e) {
             System.out.println("데이터 베이스 insertComment 에러 발생");
             System.out.println("Error : " + e.getMessage());
             e.printStackTrace();
         }
+        return result;
+    }
+
+    public int deleteComment(int idx) {
+        int result = 0;
+        String sql = "DELETE FROM comment WHERE idx = ?;";
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, idx);
+            result = pstm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("데이터 베이스 deleteComment 에러 발생");
+            System.out.println("Error : " + e.getMessage());
+            e.printStackTrace();
+        }
+        return result;
     }
 }

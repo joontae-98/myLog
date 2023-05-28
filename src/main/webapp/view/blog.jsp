@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="col-sm-8">
-            <h1>${userId}님의 블로그</h1>
+            <h1>${userName}님의 블로그</h1>
             <hr>
             <c:choose>
                 <c:when test="${empty postList}">
