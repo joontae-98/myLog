@@ -53,7 +53,7 @@
             <c:if test="${not empty post.postOfile}">
                 <div>
                     <span class="fw-bold">첨부파일 : </span>
-                    <a href="">${post.postOfile}</a>
+                    <a href="/myLog/Download.do?ofile=${post.postOfile}&sfile=${post.postSfile}">${post.postOfile}</a>
                 </div>
             </c:if>
             <hr>

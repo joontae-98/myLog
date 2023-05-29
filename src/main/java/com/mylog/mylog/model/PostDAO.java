@@ -171,8 +171,8 @@ public class PostDAO extends JDBConnect {
 
     public int insertPost(PostDTO post) {
         int result = 0;
-        String sql = "INSERT INTO post(user_id, post_title, post_pass, post_content, post_date, post_open ) ";//file 추가 예정
-        sql += "VALUES(?, ?, ?, ?, NOW(), ?); ";
+        String sql = "INSERT INTO post(user_id, post_title, post_pass, post_content, post_date, post_open, post_ofile, post_sfile ) ";
+        sql += "VALUES(?, ?, ?, ?, NOW(), ?, ?, ?); ";
         try {
             pstm = conn.prepareStatement(sql);
             pstm.setString(1, post.getUserId());
@@ -180,6 +180,8 @@ public class PostDAO extends JDBConnect {
             pstm.setString(3, post.getPostPass());
             pstm.setString(4, post.getPostContent());
             pstm.setInt(5, post.getPostOpen());
+            pstm.setString(6, post.getPostOfile());
+            pstm.setString(7, post.getPostSfile());
 
             result = pstm.executeUpdate();
         } catch (Exception e) {
@@ -234,7 +236,7 @@ public class PostDAO extends JDBConnect {
     public int updatePost(PostDTO post) {
         int result = 0;
         String sql = "UPDATE post SET post_title = ?, post_pass = ?, ";
-        sql += "post_content = ?, post_date = NOW(), post_open = ? ";
+        sql += "post_content = ?, post_date = NOW(), post_open = ? , post_ofile = ?, post_sfile = ? ";
         sql += "WHERE idx = ?; ";
         try {
             pstm = conn.prepareStatement(sql);
@@ -242,7 +244,10 @@ public class PostDAO extends JDBConnect {
             pstm.setString(2, post.getPostPass());
             pstm.setString(3, post.getPostContent());
             pstm.setInt(4, post.getPostOpen());
-            pstm.setInt(5, post.getIdx());
+            pstm.setString(5, post.getPostOfile());
+            pstm.setString(6, post.getPostSfile());
+            pstm.setInt(7, post.getIdx());
+
 
             result = pstm.executeUpdate();
         } catch (Exception e) {

@@ -28,7 +28,7 @@
 <body>
 <jsp:include page="/layout/header.jsp"></jsp:include>
 <main class="container my-5">
-    <form action="/myLog/Write.as" method="post">
+    <form action="/myLog/Write.as" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm">
                 <div class="form-floating">

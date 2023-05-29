@@ -1,0 +1,21 @@
+package com.mylog.mylog.controller;
+
+import com.mylog.mylog.util.FileUtils;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/myLog/Download.do")
+public class DownloadController extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String ofile = req.getParameter("ofile");
+        String sfile = req.getParameter("sfile");
+
+        FileUtils.download(req, resp, "c:\\upload", sfile, ofile);
+    }
+}
