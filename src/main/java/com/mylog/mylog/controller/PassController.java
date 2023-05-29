@@ -44,6 +44,8 @@ public class PassController extends HttpServlet {
                         resp.sendRedirect("/myLog/Post.do?postNum=" + postIdx);
                     }
                     break;
+                case "secret":
+                    resp.sendRedirect("/myLog/Post.do?postNum=" + postIdx);
             }
         } else {
             JSFunc.alertBack("비밀번호가 틀렸습니다.", resp);

@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header class="sticky-top">
-    <nav class="navbar navbar-expand-sm navbar-light bg-success">
+    <nav class="navbar navbar-expand-sm navbar-light bg-main">
         <div class="container-fluid">
             <a href="/myLog/Main.do" class="navbar-brand ">myLog</a>
             <div class="justify-content-end">

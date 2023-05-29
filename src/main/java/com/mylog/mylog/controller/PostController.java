@@ -19,6 +19,7 @@ public class PostController extends HttpServlet {
         PostDTO post;
         int postNum = Integer.parseInt(req.getParameter("postNum"));
         PostDAO dao = new PostDAO();
+        dao.updatePostVisits(postNum);
         post = dao.selectPost(postNum);
         dao.close();
 

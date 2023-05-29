@@ -79,6 +79,7 @@ public class PostDAO extends JDBConnect {
         }
         return postList;
     }
+
     public List<PostDTO> selectPostList(String userId) {
         List<PostDTO> postList = new ArrayList<>();
 
@@ -250,5 +251,20 @@ public class PostDAO extends JDBConnect {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public void updatePostVisits(int postNum) {
+
+        String sql = "UPDATE post SET post_visits = post_visits + 1 WHERE idx = ?; ";
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, postNum);
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("데이터 베이스 updatePostVisits 에러 발생");
+            System.out.println("Error : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

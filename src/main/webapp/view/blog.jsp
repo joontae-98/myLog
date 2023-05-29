@@ -12,11 +12,12 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="/style/css.css">
     <style>
         .crop-text-3 {
             -webkit-line-clamp: 3;
@@ -32,10 +33,18 @@
             $("#btn-comment").on("click", () => {
                 location.href = "/myLog/Comment.co?userId=${userId}";
             });
+
+            $(".a-modal").on("click", function () {
+                var data = $(this).data('id');
+                var idx = $(this).data('idx');
+                $("#post-mode").val(data);
+                $("#input-idx").val(idx);
+            });
         });
     </script>
 </head>
 <body>
+<c:import url="/layout/modal.jsp"></c:import>
 <c:import url="/layout/header.jsp"></c:import>
 <main class="container my-5">
     <div class="row">
@@ -64,8 +73,24 @@
                     <c:forEach items="${postList}" var="item" varStatus="loop">
                         <div class="my-3">
                             <div class="d-flex justify-content-between">
-                                <h3><a href="/myLog/Post.do?postNum=${item.idx}"
-                                       class="text-decoration-none text-black">${item.postTitle}</a></h3>
+                                <c:choose>
+                                    <c:when test="${item.postOpen == 1}">
+                                        <h3><a href="/myLog/Post.do?postNum=${item.idx}"
+                                               class="text-decoration-none text-black">${item.postTitle}</a></h3>
+
+                                    </c:when>
+                                    <c:otherwise>
+                                        <h3>
+                                            <a class="text-decoration-none text-black a-modal"
+                                               data-id="secret"
+                                               data-idx="${item.idx}"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#modal-pass">
+                                                <i class="bi bi-lock"></i>${item.postTitle}</a>
+                                        </h3>
+                                    </c:otherwise>
+                                </c:choose>
+
                                 <span>${item.postVisits}</span>
                             </div>
                             <h6 class="text-body-secondary crop-text-3" style="height: 60px">
