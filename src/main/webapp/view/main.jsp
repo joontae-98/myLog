@@ -61,7 +61,15 @@
                                             </h3>
                                             <h6 class="card-subtitle mb-2 text-body-secondary text-truncate"
                                                 style="height: 60px">
-                                                    ${item.postContent}</h6>
+                                                <c:choose>
+                                                    <c:when test="${item.postOpen == 1}">
+                                                        ${item.postContent}
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        비밀글 입니다.
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </h6>
                                             <p class="m-0 text-secondary">${item.postDate}</p>
                                         </div>
 

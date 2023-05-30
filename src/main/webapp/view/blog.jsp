@@ -94,7 +94,14 @@
                                 <span>${item.postVisits}</span>
                             </div>
                             <h6 class="text-body-secondary crop-text-3" style="height: 60px">
-                                    ${item.postContent}
+                                <c:choose>
+                                    <c:when test="${item.postOpen == 1}">
+                                        ${item.postContent}
+                                    </c:when>
+                                    <c:otherwise>
+                                        비밀글 입니다.
+                                    </c:otherwise>
+                                </c:choose>
                             </h6>
                             <span>${item.postDate}</span>
                             <hr>
