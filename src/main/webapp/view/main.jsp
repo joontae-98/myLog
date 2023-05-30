@@ -46,10 +46,10 @@
                                                 <c:choose>
                                                     <c:when test="${item.postOpen == 1}">
                                                         <a href="/myLog/Post.do?postNum=${item.idx}"
-                                                           class="text-decoration-none text-black">${item.postTitle}</a>
+                                                           class="text-decoration-none text-black text-truncate" >${item.postTitle}</a>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <a class="text-decoration-none text-black a-modal"
+                                                        <a class="text-decoration-none text-black a-modal text-truncate"
                                                            data-id="secret"
                                                            data-idx="${item.idx}"
                                                            data-bs-toggle="modal"

@@ -20,7 +20,7 @@
     <script>
         $(document).ready(() => {
             $("#btn-blog").on("click", () => {
-                history.back();
+                location.href = "/myLog/Blog.do?userId=${userId}";
             });
         });
     </script>
@@ -73,7 +73,7 @@
                                 <div class="col-sm ">
                                     <c:if test="${sessionScope.user.userId == item.userId || sessionScope.user.userId == item.commentId}">
                                         <a href="/myLog/Delete.co?idx=${item.idx}&userId=${userId}"
-                                           class="btn btn-danger"
+                                           class="btn btn-danger p-1 w-100"
                                            id="btn-delete">삭제</a>
                                     </c:if>
                                 </div>
